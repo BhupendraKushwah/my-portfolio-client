@@ -53,6 +53,7 @@
 
     .hero-section {
         padding: 0rem !important;
+        height: auto;
     }
     .text-content h1 {
         font-size: 1.8rem;
