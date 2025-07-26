@@ -1,0 +1,343 @@
+@import url("./assets/style/header.css");
+@import url("./assets/style/hero.css");
+
+/* ────────────────────────────────────────────────
+   0. RESET (condensed)
+   ──────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-base);
+  line-height: 1.5;
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+  display: block;
+}
+
+/* ────────────────────────────────────────────────
+   1. TOKENS  ➜  **YOUR COLORS & SIZES AS VARS**
+   ──────────────────────────────────────────────── */
+:root {
+  /* Typography */
+  --font-base: "Inter", "Noto Sans", sans-serif;
+
+  /* Core colors (taken from your markup) */
+  --clr-bg: #101323;
+  /* entire page bg */
+  --clr-surface: #1b1e32;
+  /* cards, alt sections */
+  --clr-border: #21294a;
+  /* header & thin borders */
+  --clr-card-border: #2f3a6a;
+  /* stat cards */
+  --clr-primary: #4768fa;
+  /* CTA buttons */
+  --clr-primary-hov: #5f7dff;
+  /* CTA hover */
+  --clr-text: #bababa;
+  /* regular white text */
+  --clr-text-muted: #8e9acc;
+  /* secondary paragraph color */
+
+  /* Sizing scale */
+  --space-1: 0.25rem;
+  /*  4px */
+  --space-2: 0.5rem;
+  /*  8px */
+  --space-3: 0.75rem;
+  /* 12px */
+  --space-4: 1rem;
+  /* 16px */
+  --space-5: 1.5rem;
+  /* 24px */
+  --space-6: 2rem;
+  /* 32px */
+
+  /* Radius & shadow */
+  --radius-lg: 0.75rem;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / .15);
+  --shadow-md: 0 4px 8px rgb(0 0 0 / .25);
+}
+
+/* ────────────────────────────────────────────────
+   2. LAYOUT HELPERS  (match classes you used)
+   ──────────────────────────────────────────────── */
+body {
+  background: var(--clr-bg);
+  color: var(--clr-text);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.layout-container {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.section {
+  padding: var(--space-6) var(--space-4);
+}
+
+.container {
+  width: min(100% - 2rem, 1280px);
+  margin-inline: auto;
+}
+
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-weight: 700;
+  line-height: 1;
+  padding: var(--space-3) var(--space-5);
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: background .25s ease, color .25s ease;
+}
+
+.btn-primary {
+  background: var(--clr-primary);
+  color: #fff;
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible {
+  background: var(--clr-primary-hov);
+}
+
+.btn-ghost {
+  background: var(--clr-border);
+  color: var(--clr-text);
+}
+
+.btn-ghost:hover {
+  background: var(--clr-primary);
+}
+
+/* Statistic cards (Experience / Projects / Tech Stack) */
+.stat-card {
+  border: 1px solid var(--clr-card-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  flex: 1 1 158px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Hero */
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 6vw, 3rem);
+  font-weight: 900;
+  line-height: 1.2;
+}
+
+.hero p {
+  color: var(--clr-text-muted);
+  max-width: 60ch;
+}
+
+/* About avatar */
+.avatar {
+  aspect-ratio: 1/1;
+  width: 8rem;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Tabs (Skills / Experience / Education) */
+.tabs {
+  display: flex;
+  gap: var(--space-5);
+  border-bottom: 1px solid var(--clr-border);
+}
+
+.tabs a {
+  padding-block: var(--space-4);
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: var(--clr-text);
+  border-bottom: 3px solid transparent;
+}
+
+.tabs a.active {
+  color: var(--clr-text);
+  border-color: var(--clr-primary);
+}
+
+
+/* Footer */
+.site-footer {
+  text-align: center;
+  padding: var(--space-4);
+  color: var(--clr-text);
+  font-size: 0.875rem;
+}
+
+
+.custom-bg {
+  background-color: #21294a;
+  /* Matches Tailwind bg-[#21294a] */
+}
+
+.custom-px-2-5 {
+  padding-left: 0.625rem;
+  /* Matches Tailwind px-2.5 */
+  padding-right: 0.625rem;
+}
+
+
+.main {
+  padding: 2rem;
+}
+
+.bg-card {
+  background-color: var(--clr-surface);
+  border: 1px solid var(--clr-card-border);
+  color: var(--clr-text);
+}
+
+.fs-7 {
+  font-size: .8rem;
+}
+
+.contact-name {
+  padding-left: 15px;
+  padding-bottom: 15px;
+  font-size: 14px;
+}
+
+.sm-title {
+  margin-left: -15px;
+  margin-bottom: 10px;
+}
+
+.contact-info .sm-title h3 {
+  font-size: 15px;
+}
+
+.sm-title h3 {
+  color: #fff;
+  font-weight: 500;
+  position: relative;
+  font-size: 18px;
+  padding-left: 15px;
+}
+
+.sm-title h3:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 2px;
+  height: 20px;
+  background: var(--clr-primary);
+}
+
+.form-control {
+  color: #fff;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+  box-shadow: none;
+  font-size: 15px;
+}
+
+.form-input input::placeholder,
+.form-input textarea::placeholder {
+  font-size: 15px;
+  color: var(--clr-text);
+}
+
+.form-input input:focus,
+.form-input textarea:focus {
+  background: var(--clr-bg);
+  box-shadow: none;
+  color: var(--clr-text);
+  outline: none;
+}
+
+.about-link{
+  font-size: .9rem;
+  font-weight: 500;
+}
+
+.active{
+  font-size: .9rem;
+  font-weight: 500;
+  color: rgb(255, 255, 255);
+}
+
+.about-link::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  border-radius: 5px;
+  background-color: var(--clr-primary);
+  transition: width .3s ease;
+}
+
+.active::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  border-radius: 5px;
+  background-color: var(--clr-primary);
+  transition: width .3s ease;
+}
+
+.about-link:hover::after {
+  width: 100%;
+}
+
+.css-1p3m7a8-multiValue {
+  background-color: #30107fde !important;
+}
+
+.text-color {
+  color: var(--clr-text) !important;
+}
+
+@media (max-width: 768px) {
+  .text-container {
+    min-width: 100% !important;
+  }
+
+  #about {
+    /* margin-top: 215px; */
+  }
+}
