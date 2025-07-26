@@ -5,18 +5,33 @@ import { getImage } from '@/utils/common.util';
 import { Link as ScrollLink } from 'react-scroll';
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import 'react-loading-skeleton/dist/skeleton.css'
+import api from '@/axios.config';
 
 const Hero = () => {
     const { user, loading } = useSelector(state => state.auth)
 
-    useEffect(()=>{
-        if(loading){
+    useEffect(() => {
+        if (loading) {
             document.body.style.overflow = 'hidden'
         }
-        else{
+        else {
             document.body.style.overflow = 'auto'
         }
     })
+
+    const downloadResume = async () => {
+         const { data } = await api.get('/common/download-resume', {
+            responseType: 'blob', // 👈 This is mandatory
+        });
+
+        const blob = new Blob([data], { type: 'application/pdf' });
+        const url = window.URL.createObjectURL(blob);
+        let a = document.createElement('a');
+        a.href = url;
+        a.download = "Bhupendra-Kushwah.pdf"
+        document.body.appendChild(a);
+        a.click();
+    };
 
     return (
         <SkeletonTheme baseColor="#e0e0e0" highlightColor="#f5f5f5">
@@ -83,8 +98,8 @@ const Hero = () => {
                                     </>
                                 ) : (
                                     <>
-                                        <Button className="">
-                                            <a href={getImage(user?.resume, 'raw') || '#'} target="_blank" download='Bhupendra-kushwah.pdf' rel="noopener noreferrer" className='text-white text-decoration-none'>Download CV</a>
+                                        <Button onClick={downloadResume}>
+                                            <span className="text-white text-decoration-none">Download CV</span>
                                         </Button>
                                         <ScrollLink
                                             className="text-white btn btn-outline-primary rounded-2"
