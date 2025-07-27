@@ -6,6 +6,7 @@ import { Link as ScrollLink } from 'react-scroll';
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import 'react-loading-skeleton/dist/skeleton.css'
 import api from '@/axios.config';
+import toasty from '@/utils/toast.util.jsx';
 
 const Hero = () => {
     const { user, loading } = useSelector(state => state.auth)
@@ -20,11 +21,13 @@ const Hero = () => {
     })
 
     const downloadResume = async () => {
+        let t = toasty.loading('Downloading.....')
          const { data } = await api.get('/common/download-resume', {
             responseType: 'blob', // 👈 This is mandatory
         });
 
         const blob = new Blob([data], { type: 'application/pdf' });
+        toasty.dismiss(t)
         const url = window.URL.createObjectURL(blob);
         let a = document.createElement('a');
         a.href = url;

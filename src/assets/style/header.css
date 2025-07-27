@@ -29,9 +29,17 @@
   justify-content: end;
 }
 
+.respo-header-items {
+  display: none;
+}
+
 @media screen and (max-width: 767px) {
   .header-items {
     display: none !important;
+  }
+
+  .respo-header-items {
+    display: flex;
   }
 }
 
@@ -48,6 +56,6 @@
   transition: width .3s ease;
 }
 
-.nav-link:hover::after{
+.nav-link:hover::after {
   width: 100%;
 }

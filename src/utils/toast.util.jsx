@@ -18,34 +18,60 @@ const ToastContent = ({ t, message }) => (
 
 const toasty = {
     success: (message, options = {}) => {
-        toast.success(<ToastContent t={toast} message={message} />, {
-            ...options,
-            position: 'bottom-right',
-            className: 'toasty-wrap success-toasty',
-        });
+        return toast.success(
+            (t) => <ToastContent t={t} message={message} />,
+            {
+                ...options,
+                position: 'bottom-right',
+                className: 'toasty-wrap success-toasty',
+            }
+        );
     },
     error: (message, options = {}) => {
-        toast.error(<ToastContent t={toast} message={message} />, {
-            ...options,
-            position: 'bottom-right',
-            className: 'toasty-wrap error-toasty',
-        });
+        return toast.error(
+            (t) => <ToastContent t={t} message={message} />,
+            {
+                ...options,
+                position: 'bottom-right',
+                className: 'toasty-wrap error-toasty',
+            }
+        );
     },
     info: (message, options = {}) => {
-        toast(<ToastContent t={toast} message={message} />, {
-            ...options,
-            position: 'bottom-right',
-            className: 'toasty-wrap info-toasty',
-            icon: '',
-        });
+        return toast(
+            (t) => <ToastContent t={t} message={message} />,
+            {
+                ...options,
+                position: 'bottom-right',
+                className: 'toasty-wrap info-toasty',
+                icon: '',
+            }
+        );
     },
     warning: (message, options = {}) => {
-        toast(<ToastContent t={toast} message={message} />, {
-            ...options,
-            position: 'bottom-right',
-            className: 'toasty-wrap warning-toasty',
-            icon: '',
-        });
+        return toast(
+            (t) => <ToastContent t={t} message={message} />,
+            {
+                ...options,
+                position: 'bottom-right',
+                className: 'toasty-wrap warning-toasty',
+                icon: '',
+            }
+        );
+    },
+    loading: (message, options = {}) => {
+        return toast.loading(
+            (t) => <ToastContent t={t} message={message} />,
+            {
+                ...options,
+                position: 'bottom-right',
+                className: 'toasty-wrap loading-toasty',
+                // icon: '',
+            }
+        );
+    },
+    dismiss: (toastId) => {
+        toast.dismiss(toastId); // Correct usage
     },
 };
 

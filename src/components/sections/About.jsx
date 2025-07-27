@@ -5,7 +5,6 @@ import { getImage } from '@/utils/common.util';
 const About = () => {
   const [activeTab, setActiveTab] = useState('skills');
   const { user } = useSelector(state => state.auth)
-  console.log(user);
 
   const renderTabContent = () => {
     switch (activeTab) {

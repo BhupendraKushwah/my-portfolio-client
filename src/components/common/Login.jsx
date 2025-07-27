@@ -1,6 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {useNavigate} from 'react-router-dom'
 import CustomInput from '@/components/common/CustomInput'
 import { setAuthenticationToken } from '@/utils/authentication.util';
@@ -15,7 +15,6 @@ const LoginCard = () => {
     } = useForm();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { user } = useSelector((state) => state.auth);
     const onSubmit = async (data) => {
         try {
             let response = await api.post('/super-admin/login', data)
@@ -29,7 +28,6 @@ const LoginCard = () => {
 
         }
     };
-    console.log(user)
 
     return (
         <div className="d-flex justify-content-center align-items-center">
