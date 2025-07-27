@@ -68,7 +68,6 @@ api.interceptors.response.use(
   (error) => {
     const status = error.response?.status;
     const msg = extractErrorMessage(error);
-    console.log(msg);
     
     // Force logout
     if (status === 401) {

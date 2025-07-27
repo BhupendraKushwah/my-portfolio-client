@@ -7,7 +7,7 @@ export const fetchProjects = createAsyncThunk('project/fetchProject', async (_, 
         const response = await api.get('/common/projects');
         return response.data.project;
     } catch (error) {
-        console.log(error);
+        console.error(error);
 
         return rejectWithValue(error.response?.data?.message || 'Failed to fetch user');
     }

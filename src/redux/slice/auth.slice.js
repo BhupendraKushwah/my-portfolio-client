@@ -7,7 +7,7 @@ export const fetchUser = createAsyncThunk('user/fetchUser', async (_, { rejectWi
     const response = await api.get('/common');
     return response.data.user;
   } catch (error) {
-    console.log(error);
+    console.error(error);
 
     return rejectWithValue(error.response?.data?.message || 'Failed to fetch user');
   }
